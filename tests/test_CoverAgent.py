@@ -106,14 +106,7 @@ class TestCoverAgent:
             test_file_output_path="",
             code_coverage_report_path="coverage_report.xml",
             test_command="pytest",
-            test_command_dir=os.getcwd(),
-            included_files=None,
-            coverage_type="cobertura",
-            report_filepath="test_results.html",
-            desired_coverage=90,
-            max_iterations=10,
-            model="gpt-3",
-            api_base="https://api.openai.com"
+            test_command_dir=os.getcwd()
         )
         agent = CoverAgent(args)
         agent._duplicate_test_file()
@@ -129,14 +122,7 @@ class TestCoverAgent:
             test_file_output_path="output_test_file.py",
             code_coverage_report_path="coverage_report.xml",
             test_command="pytest",
-            test_command_dir=os.getcwd(),
-            included_files=None,
-            coverage_type="cobertura",
-            report_filepath="test_results.html",
-            desired_coverage=90,
-            max_iterations=10,
-            model="gpt-3",
-            api_base="https://api.openai.com"
+            test_command_dir=os.getcwd()
         )
         agent = CoverAgent(args)
         agent._duplicate_test_file()
