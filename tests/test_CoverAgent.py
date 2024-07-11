@@ -96,3 +96,27 @@ class TestCoverAgent:
                 agent = CoverAgent(args)
 
         assert str(exc_info.value) == f"Test file not found at {args.test_file_path}"
+
+    @patch("cover_agent.CoverAgent.shutil.copy")
+    @patch("cover_agent.CoverAgent.os.path.isfile", return_value=True)
+    def test__duplicate_test_file_empty_path(self, mock_isfile, mock_copy):
+        args = argparse.Namespace(
+            source_file_path="test_source.py",
+            test_file_path="test_file.py",
+            test_file_output_path="",
+            code_coverage_report_path="coverage_report.xml",
+            test_command="pytest",
+            test_command_dir=os.getcwd(),
+            included_files=None,
+            coverage_type="cobertura",
+            report_filepath="test_results.html",
+            desired_coverage=90,
+            max_iterations=10,
+            model="gpt-3",
+            api_base="https://api.openai.com"
+        )
+        agent = CoverAgent(args)
+        agent._duplicate_test_file()
+        assert args.test_file_output_path == args.test_file_path
+        mock_copy.assert_not_called()
+
